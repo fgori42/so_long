@@ -1,0 +1,1 @@
+A small 2D game developed in C. Extract the miniBilix and run make. Two maps are already included: one for testing errors and the other playable. According to the project rules, the maps must be rectangular and contain only one player, one exit, and one enemy. The number of collectibles, however, can vary.
