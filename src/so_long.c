@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgori <fgori@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 11:49:04 by fgori             #+#    #+#             */
-/*   Updated: 2024/01/29 11:50:05 by fgori            ###   ########.fr       */
+/*   Updated: 2024/05/29 21:02:07 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,56 @@ int	loop_moster(void *arg)
 	moster_move(data);
 	moster_move_four(data);
 	return (0);
+}
+
+void	make_str(int fd, int len)
+{
+	int	i;
+	int cha;
+
+	i = 0;
+	ft_putchar('1', fd);
+	while (i < len - 2)
+	{
+		srandom(time(NULL));
+		cha = random() % 10;
+		if (cha < 3)
+			ft_putchar('1', fd);
+		if (cha >= 3 && cha < 6)
+			ft_putchar('0', fd);
+	}
+}
+
+int	auto_mapping(void)
+{
+	int	len;
+	int	cont;
+	int	i;
+	int	len_two;
+	int	fd;
+
+	i = 0;
+	len_two = 1;
+	srandom(time(NULL));
+	len = random() % 20;
+	fd =  open("temp_map", O_TRUNC | O_CREAT | O_RDWR, 0777);
+	while (i < len)
+	{
+		ft_putchar_fd('1', fd);
+		i++;
+	}
+	ft_putchar_fd('\n', fd);
+	while(len_two < len - 2)
+	{
+		i = 0;
+		while(i < len)
+		{
+			make_str(fd, len);
+			i++;
+		}
+		len_two++;
+	}
+	return (fd);
 }
 
 void	so_long(t_data *data, char *av)
